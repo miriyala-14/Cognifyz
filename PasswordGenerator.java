@@ -1,13 +1,15 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class PasswordGenerator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
         
         System.out.print("Enter the desired length of the password: ");
         int l = sc.nextInt();
+        
+
         
         System.out.print("Include numbers? (yes/no): ");
         boolean a = sc.next().equalsIgnoreCase("yes");
