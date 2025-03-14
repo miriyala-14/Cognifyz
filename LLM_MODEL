@@ -1,0 +1,18 @@
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+def load_model(model_name="gpt2"):
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name)
+    return model, tokenizer
+
+def generate_text(prompt, model, tokenizer, max_length=50):
+    inputs = tokenizer(prompt, return_tensors="pt")
+    with torch.no_grad():
+        outputs = model.generate(**inputs, max_length=max_length)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+if _name_ == "_main_":
+    model, tokenizer = load_model()
+    prompt = "Once upon a time"
+    print(generate_text(prompt, model, tokenizer))
